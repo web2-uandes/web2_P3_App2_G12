@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-// const API_URL = "https://web-p3-backend.herokuapp.com";
-const API_URL = "http://localhost:8000";
+const API_URL = "https://web-p3-backend.herokuapp.com";
+// const API_URL = "http://localhost:8000";
 
 export function fetchEvaluation(evaluationId) {
     return new Promise((resolve, reject) => {
