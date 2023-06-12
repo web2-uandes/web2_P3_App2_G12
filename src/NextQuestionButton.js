@@ -6,12 +6,11 @@ export default function NextQuestionButton({selectedValue, hookState, setHookSta
   //TODO: Implement function to send question to API
   const {evaluationId, memberId} = useContext(API_CONTEXT)
   
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     // Handle the selected value here, e.g., pass it to an API call or perform some other action
     console.log('Selected Value:', selectedValue);
-    sendQuestion(evaluationId, memberId, selectedValue).then(
-        setHookState(!hookState)
-    )
+    await sendQuestion(evaluationId, memberId, selectedValue);
+    setHookState(!hookState);
   };
 
   return (

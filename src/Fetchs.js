@@ -106,7 +106,7 @@ export function fetchQuestion(evaluationId, memberId){
     });
 }
 
-export function sendQuestion(evaluationId, memberId, answer){
+export async function sendQuestion(evaluationId, memberId, answer){
     return new Promise((resolve, reject) => {
         fetch(`${API_URL}/evaluations/${evaluationId}/assignment/${memberId}/question`, {
             method: "POST",
