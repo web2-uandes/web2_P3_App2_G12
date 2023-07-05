@@ -4,6 +4,7 @@ import Alternative from "./Alternative";
 import NextQuestionButton from "./NextQuestionButton";
 import MathQuestion from "./MathQuestion";
 import SemiOpenQuestion from "./SemiOpenQuestion";
+import MatrixQuestion from "./MatrixQuestion";
 
 export default function Question({
   evaluationId,
@@ -85,6 +86,17 @@ export default function Question({
             hookState={hookState}
             setHookState={setHookState}
             setSelectedValue={setSelectedValue}
+          />
+        </>
+      )}
+
+      {/* Matrix question */}
+      {questionType === 4 && (
+        <>
+          <NextQuestionButton
+            selectedValue={selectedValue}
+            hookState={hookState}
+            setHookState={setHookState}
           />
         </>
       )}
