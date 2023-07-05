@@ -1,37 +1,44 @@
-import React, { useContext, useState, useEffect } from 'react'
-import API_CONTEXT from "./APIContext"
-import { fetchResults } from './Fetchs';
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import React, { useContext, useState, useEffect } from "react";
+import API_CONTEXT from "./APIContext";
+import { fetchResults } from "./Fetchs";
+import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
 
 export default function PieChartComponent() {
-  const {evaluationId, memberId} = useContext(API_CONTEXT)
-  const [pieData, setPieData] = useState([])
-
+  const { invitation } = useContext(API_CONTEXT);
+  const [pieData, setPieData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchResults(evaluationId, memberId);
-        setPieData([{ name: 'Correct Answers', value: data.correct_answers }])
-        setPieData(previousData => {
-          previousData.push({ name: 'Incorrect Answers', value: data.wrong_answers })
-          return previousData
-        })
+        const data = await fetchResults(invitation);
+        setPieData([{ name: "Correct Answers", value: data.correct_answers }]);
+        setPieData((previousData) => {
+          previousData.push({
+            name: "Incorrect Answers",
+            value: data.wrong_answers,
+          });
+          return previousData;
+        });
       } catch (error) {
-        console.log('Error fetching question:', error);
+        console.log("Error fetching question:", error);
       }
     }
 
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
 
-  const colors = ['#198754', '#D2222D'];
+  const colors = ["#198754", "#D2222D"];
 
   return (
     <PieChart width={280} height={400}>
-      <text x={140} y={60} textAnchor="middle" fontSize={18} textDecoration="underline">
+      <text
+        x={140}
+        y={60}
+        textAnchor="middle"
+        fontSize={18}
+        textDecoration="underline"
+      >
         Results
       </text>
       <Pie
@@ -50,5 +57,5 @@ export default function PieChartComponent() {
       <Legend />
       <Tooltip />
     </PieChart>
-  )
+  );
 }
